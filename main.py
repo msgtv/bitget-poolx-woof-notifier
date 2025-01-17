@@ -29,12 +29,12 @@ def main():
             chat_id=CHAT_ID,
             msg=f'🤑 На споте %.2f $WOOF.\n\n❤️‍🔥 Пора бы им в PoolX\n\n%s' % (woof_count, POOLX_URL)
         )
-    else:
-        send_message(
-            BOT_API,
-            chat_id=CHAT_ID,
-            msg=f'Количество $WOOF на споте: %.2f' % woof_count
-        )
+    # else:
+    #     send_message(
+    #         BOT_API,
+    #         chat_id=CHAT_ID,
+    #         msg=f'Количество $WOOF на споте: %.2f' % woof_count
+    #     )
 
 
 if __name__ == '__main__':
