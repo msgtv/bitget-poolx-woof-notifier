@@ -72,10 +72,4 @@ This Python script monitors the amount of `$WOOF` tokens available on your Bitge
 
 ## Contributing  
 
-Contributions are welcome! Please submit a pull request or open an issue to suggest improvements or report bugs.  
-
-
----  
-
-Happy automating! 🚀  
-```
+Contributions are welcome! Please submit a pull request or open an issue to suggest improvements or report bugs.
