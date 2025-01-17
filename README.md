@@ -1,75 +1,88 @@
-# WOOF Spot-to-PoolX Notifier  
+# Bitget PoolX Woof Notifier
 
-This Python script monitors the amount of `$WOOF` tokens available on your Bitget spot account. If the token count exceeds a defined threshold, the script sends a notification to a Telegram chat with a link to PoolX, encouraging you to deposit the tokens into the pool.  
+## Overview
+This script automates the process of monitoring the amount of $WOOF tokens on your Bitget spot account and sends notifications when the balance exceeds a specified threshold. The notification suggests transferring tokens to PoolX to benefit from compound interest.
 
-## Features  
-- Fetches `$WOOF` balance from your Bitget account.  
-- Notifies a Telegram chat when the `$WOOF` count reaches or exceeds a predefined threshold.  
-- Provides a customizable threshold and message template.  
+## Features
+- Monitors $WOOF token balance on your Bitget spot account.
+- Sends Telegram notifications when the balance meets the configured threshold.
 
-## Prerequisites  
+## Requirements
+- Python 3.6+
+- Virtual environment
 
-- **Python version**: 3.6+  
-- **Required Libraries**:  
-  Install the following libraries if not already installed:  
-  ```bash
-  pip install requests
-  ```  
+## Setup Instructions
 
-## Installation  
-
-1. Clone the repository:  
-   ```bash
-   git clone <repository_url>
-   cd <repository_directory>
-   ```  
-
-2. Set up the `config.py` file:  
-   Create a `config.py` file in the root directory and define the following variables:  
-   ```python
-   passphrase = "<your_bitget_passphrase>"
-   api_key = "<your_bitget_api_key>"
-   secret_key = "<your_bitget_secret_key>"
-   WOOF_COUNT_TO_INFORM = 100  # Replace with your threshold value
-   CHAT_ID = "<your_telegram_chat_id>"
-   BOT_API = "<your_telegram_bot_api_key>"
-   POOLX_URL = "<your_poolx_url>"
-   ```  
-
-3. Run the script:  
-   ```bash
-   python main.py
-   ```  
-
-## Files Overview  
-
-- **`main.py`**: The main entry point of the script. It fetches the `$WOOF` balance and sends notifications as needed.  
-- **`config.py`**: Stores configuration values such as API keys, thresholds, and URLs.  
-- **`woof.py`**: Contains the `get_available_coins(client)` function to fetch the `$WOOF` balance.  
-- **`send_message.py`**: Provides the `send_message(bot_api, chat_id, msg)` function to send Telegram notifications.  
-
-## Usage  
-
-1. The script connects to your Bitget account using the credentials in `config.py`.  
-2. It checks the `$WOOF` token balance on your spot wallet.  
-3. If the token count meets or exceeds `WOOF_COUNT_TO_INFORM`, a message with the PoolX link is sent to your Telegram chat. Otherwise, a message with the current `$WOOF` balance is sent.  
-
-### Example Output  
-
-#### When threshold is met:  
+### 1. Clone the Repository
+```bash
+git clone <repository-url>
+cd bitget-poolx-woof-notifier
 ```
-🤑 На споте 120.00 $WOOF.
 
-❤️‍🔥 Пора бы им в PoolX  
-
-<POOLX_URL>
-```  
-
-#### When below threshold:  
+### 2. Set Up Virtual Environment
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
 ```
-Количество $WOOF на споте: 80.00
-```  
 
-## Contributing  
+### 3. Install Dependencies
+```bash
+pip install -r requirements.txt
+```
 
-Contributions are welcome! Please submit a pull request or open an issue to suggest improvements or report bugs.
+### 4. Configure API Keys and Settings
+Update the `config.py` file with the following information:
+- `passphrase`: Your Bitget API passphrase.
+- `api_key`: Your Bitget API key.
+- `secret_key`: Your Bitget API secret key.
+- `WOOF_COUNT_TO_INFORM`: The threshold for $WOOF token balance to trigger notifications.
+- `CHAT_ID`: Your Telegram chat ID.
+- `BOT_API`: Your Telegram bot API token.
+- `POOLX_URL`: The URL for PoolX.
+
+### 5. Test the Script
+Run the script to ensure it works as expected:
+```bash
+.venv/bin/python main.py
+```
+
+### 6. Automate with Cron
+To run the script every 2 minutes, follow these steps:
+
+#### Open Crontab
+```bash
+crontab -e
+```
+
+#### Add Cron Job
+```bash
+*/2 * * * * /root/bitget-poolx-woof-notifier/.venv/bin/python /root/bitget-poolx-woof-notifier/main.py >> /root/bitget-poolx-woof-notifier/cron.log 2>&1
+```
+
+#### Save and Exit
+- In `nano`, press `CTRL+O`, `Enter`, then `CTRL+X`.
+- In `vim`, press `ESC`, type `:wq`, and press `Enter`.
+
+#### Verify Cron Job
+```bash
+crontab -l
+```
+Ensure your cron job is listed.
+
+#### Check Cron Status
+Make sure the cron service is active:
+```bash
+systemctl status cron
+```
+If it is not running, start it:
+```bash
+systemctl start cron
+systemctl enable cron
+```
+
+## Logging
+To debug or verify execution, logs are written to `cron.log` in the project directory.
+
+## Support
+For any issues or feature requests, feel free to open an issue in the repository.
+
