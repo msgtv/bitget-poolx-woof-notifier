@@ -78,6 +78,4 @@ Contributions are welcome! Please submit a pull request or open an issue to sugg
 ---  
 
 Happy automating! 🚀  
-```  
-
-Replace `<repository_url>` and `<repository_directory>` with your GitHub repository details. Let me know if you want to customize this further!
+```
