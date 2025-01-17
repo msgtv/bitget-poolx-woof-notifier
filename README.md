@@ -31,14 +31,12 @@ pip install -r requirements.txt
 ```
 
 ### 4. Configure API Keys and Settings
-Update the `config.py` file with the following information:
+Create the `.env` file with the following information (template on `.env_example`):
 - `passphrase`: Your Bitget API passphrase.
 - `api_key`: Your Bitget API key.
 - `secret_key`: Your Bitget API secret key.
-- `WOOF_COUNT_TO_INFORM`: The threshold for $WOOF token balance to trigger notifications.
 - `CHAT_ID`: Your Telegram chat ID.
 - `BOT_API`: Your Telegram bot API token.
-- `POOLX_URL`: The URL for PoolX.
 
 ### 5. Test the Script
 Run the script to ensure it works as expected:
